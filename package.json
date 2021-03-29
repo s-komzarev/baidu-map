@@ -1,0 +1,21 @@
+{
+  "name": "angular2-baidu-map",
+  "version": "8.1.1",
+  "peerDependencies": {
+    "@angular/common": ">=8.0.0",
+    "@angular/core": ">=8.0.0"
+  },
+  "main": "bundles/angular2-baidu-map.umd.js",
+  "module": "fesm5/angular2-baidu-map.js",
+  "es2015": "fesm2015/angular2-baidu-map.js",
+  "esm5": "esm5/angular2-baidu-map.js",
+  "esm2015": "esm2015/angular2-baidu-map.js",
+  "fesm5": "fesm5/angular2-baidu-map.js",
+  "fesm2015": "fesm2015/angular2-baidu-map.js",
+  "typings": "angular2-baidu-map.d.ts",
+  "metadata": "angular2-baidu-map.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

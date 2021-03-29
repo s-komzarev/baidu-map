@@ -1,0 +1,7 @@
+import { isNull } from './object';
+export function nullCheck(obj, msg) {
+    if (isNull(obj)) {
+        throw new Error(msg);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmFsaWRhdGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9hbmd1bGFyMi1iYWlkdS1tYXAvIiwic291cmNlcyI6WyJsaWIvaGVscGVycy92YWxpZGF0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsTUFBTSxFQUFFLE1BQU0sVUFBVSxDQUFBO0FBRWpDLE1BQU0sVUFBVSxTQUFTLENBQUMsR0FBUSxFQUFFLEdBQVc7SUFDN0MsSUFBSSxNQUFNLENBQUMsR0FBRyxDQUFDLEVBQUU7UUFDZixNQUFNLElBQUksS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFBO0tBQ3JCO0FBQ0gsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGlzTnVsbCB9IGZyb20gJy4vb2JqZWN0J1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIG51bGxDaGVjayhvYmo6IGFueSwgbXNnOiBzdHJpbmcpIHtcclxuICBpZiAoaXNOdWxsKG9iaikpIHtcclxuICAgIHRocm93IG5ldyBFcnJvcihtc2cpXHJcbiAgfVxyXG59XHJcbiJdfQ==
