@@ -634,9 +634,13 @@ let MarkerComponent = class MarkerComponent {
     }
     ngOnInit() {
         nullCheck(this.point, 'point is required for <marker>');
+        this.marker = new window.BMap.Marker(toPoint(this.point), toMarkerOptions(this.options));
+        if (this.options.label) {
+            this.marker.setLabel(new window.BMap.Label(this.options.label));
+        }
         this.service
             .addOverlay(() => {
-            return (this.marker = new window.BMap.Marker(toPoint(this.point), toMarkerOptions(this.options)));
+            return this.marker;
         })
             .then(({ map }) => {
             this.loaded.emit(this.marker);

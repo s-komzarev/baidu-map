@@ -856,9 +856,13 @@
         MarkerComponent.prototype.ngOnInit = function () {
             var _this = this;
             nullCheck(this.point, 'point is required for <marker>');
+            this.marker = new window.BMap.Marker(toPoint(this.point), toMarkerOptions(this.options));
+            if (this.options.label) {
+                this.marker.setLabel(new window.BMap.Label(this.options.label));
+            }
             this.service
                 .addOverlay(function () {
-                return (_this.marker = new window.BMap.Marker(toPoint(_this.point), toMarkerOptions(_this.options)));
+                return _this.marker;
             })
                 .then(function (_a) {
                 var map = _a.map;

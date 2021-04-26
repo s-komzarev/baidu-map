@@ -42,6 +42,7 @@ export interface MarkerOptions {
     rotation?: number;
     shadow?: Icon;
     title?: string;
+    label: string;
 }
 export interface BMarkerOptions {
     offset?: BSize;
