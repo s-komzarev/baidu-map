@@ -1,5 +1,5 @@
 import { BIcon, Icon } from './Icon';
-import { BLabel } from './Label';
+import { BLabel, BLabelOptions } from './Label';
 import { Overlay } from './Overlay';
 import { BPoint, Point } from './Point';
 import { BSize, Size } from './Size';
@@ -42,7 +42,7 @@ export interface MarkerOptions {
     rotation?: number;
     shadow?: Icon;
     title?: string;
-    label: string;
+    label: BLabelOptions;
 }
 export interface BMarkerOptions {
     offset?: BSize;

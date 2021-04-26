@@ -457,7 +457,7 @@
             return opts;
         }
         if (options.markers) {
-            opts.markers = options.markers.map(function (m) { return new window.BMap.Marker(toPoint(m.point), toMarkerOptions(m.options)); });
+            opts.markers = options.markers.map(function (m) { return createMarker(m.point, m.options); });
         }
         if (!isNull(options.girdSize)) {
             opts.girdSize = options.girdSize;
@@ -475,6 +475,17 @@
             opts.styles = options.styles.filter(function (s) { return s; }).map(function (s) { return toTextIconStyle(s); });
         }
         return opts;
+    }
+    function createMarker(point, options) {
+        var res = new window.BMap.Marker(toPoint(point), toMarkerOptions(options));
+        if (!isNull(options.label)) {
+            var label = new window.BMap.Label(options.label.content);
+            if (options.label.styles) {
+                label.setStyle(options.label.styles);
+            }
+            res.setLabel(label);
+        }
+        return res;
     }
 
     function nullCheck(obj, msg) {
@@ -856,10 +867,7 @@
         MarkerComponent.prototype.ngOnInit = function () {
             var _this = this;
             nullCheck(this.point, 'point is required for <marker>');
-            this.marker = new window.BMap.Marker(toPoint(this.point), toMarkerOptions(this.options));
-            if (this.options.label) {
-                this.marker.setLabel(new window.BMap.Label(this.options.label));
-            }
+            this.marker = createMarker(this.point, this.options);
             this.service
                 .addOverlay(function () {
                 return _this.marker;
@@ -1444,7 +1452,7 @@
             if (options.markers) {
                 this.markerClusterer.clearMarkers();
                 this.markerClusterer.addMarkers(options.markers.map(function (m) {
-                    return new window.BMap.Marker(toPoint(m.point), toMarkerOptions(m.options));
+                    return createMarker(m.point, m.options);
                 }));
             }
             if (!isUndefined(options.girdSize)) {

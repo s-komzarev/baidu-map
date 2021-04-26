@@ -14,4 +14,6 @@ export interface BLabelOptions {
     offset?: BSize;
     position?: BPoint;
     enableMassClear?: boolean;
+    content: string;
+    styles: any;
 }

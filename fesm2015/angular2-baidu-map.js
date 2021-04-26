@@ -231,7 +231,7 @@ function toMarkerClustererOptions(options) {
         return opts;
     }
     if (options.markers) {
-        opts.markers = options.markers.map(m => new window.BMap.Marker(toPoint(m.point), toMarkerOptions(m.options)));
+        opts.markers = options.markers.map(m => createMarker(m.point, m.options));
     }
     if (!isNull(options.girdSize)) {
         opts.girdSize = options.girdSize;
@@ -249,6 +249,17 @@ function toMarkerClustererOptions(options) {
         opts.styles = options.styles.filter(s => s).map(s => toTextIconStyle(s));
     }
     return opts;
+}
+function createMarker(point, options) {
+    const res = new window.BMap.Marker(toPoint(point), toMarkerOptions(options));
+    if (!isNull(options.label)) {
+        const label = new window.BMap.Label(options.label.content);
+        if (options.label.styles) {
+            label.setStyle(options.label.styles);
+        }
+        res.setLabel(label);
+    }
+    return res;
 }
 
 function nullCheck(obj, msg) {
@@ -634,10 +645,7 @@ let MarkerComponent = class MarkerComponent {
     }
     ngOnInit() {
         nullCheck(this.point, 'point is required for <marker>');
-        this.marker = new window.BMap.Marker(toPoint(this.point), toMarkerOptions(this.options));
-        if (this.options.label) {
-            this.marker.setLabel(new window.BMap.Label(this.options.label));
-        }
+        this.marker = createMarker(this.point, this.options);
         this.service
             .addOverlay(() => {
             return this.marker;
@@ -1201,7 +1209,7 @@ let MarkerClustererComponent = class MarkerClustererComponent {
     resetOptions(options) {
         if (options.markers) {
             this.markerClusterer.clearMarkers();
-            this.markerClusterer.addMarkers(options.markers.map(m => new window.BMap.Marker(toPoint(m.point), toMarkerOptions(m.options))));
+            this.markerClusterer.addMarkers(options.markers.map(m => createMarker(m.point, m.options)));
         }
         if (!isUndefined(options.girdSize)) {
             this.markerClusterer.setGridSize(options.girdSize);
